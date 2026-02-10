@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/providers";
+import { ReactQueryProvider, ThemeProvider } from "@/components/providers";
 
 const DMSans = DM_Sans({
     subsets: ["latin"],
@@ -30,7 +30,9 @@ export default function RootLayout({
             <body
                 className={`${DMSans.variable} ${DMMono.variable} antialiased`}
             >
-                <ThemeProvider>{children}</ThemeProvider>
+                <ReactQueryProvider>
+                    <ThemeProvider>{children}</ThemeProvider>
+                </ReactQueryProvider>
             </body>
         </html>
     );
