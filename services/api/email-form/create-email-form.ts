@@ -24,9 +24,10 @@ const createEmailForm = async (args: CreateEmailFormArgs) => {
     return true;
 };
 
-const useCreateEmailForm = () => {
+export const useCreateEmailForm = () => {
     return useMutation({
         mutationFn: createEmailForm,
         mutationKey: ["create-email-form"],
+        retry: 3,
     });
 };

@@ -3,6 +3,7 @@ import { Space_Grotesk, Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider, ThemeProvider } from "@/components/providers";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -39,7 +40,10 @@ export default function RootLayout({
             >
                 <ReactQueryProvider>
                     <ThemeProvider>
-                        <SidebarProvider>{children}</SidebarProvider>
+                        <SidebarProvider>
+                            {children}
+                            <Toaster />
+                        </SidebarProvider>
                     </ThemeProvider>
                 </ReactQueryProvider>
             </body>
