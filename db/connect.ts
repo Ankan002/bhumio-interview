@@ -1,3 +1,5 @@
+"use server";
+
 import { DATABASE_URL } from "@/constants/env";
 import mongoose from "mongoose";
 
@@ -10,8 +12,12 @@ const database: DatabaseProps = {};
 export const connectToDB = async () => {
     if (database.isConnected) return;
 
+    console.log("Connecting to database...");
+
     try {
-        const db = await mongoose.connect(process.env.NEXT_PUBLIC_DB_URI ?? "");
+        const db = await mongoose.connect(DATABASE_URL);
+
+        console.log("Connected to database");
 
         database.isConnected = db.connections[0].readyState;
     } catch (error) {
