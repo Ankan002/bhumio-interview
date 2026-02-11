@@ -22,8 +22,8 @@ export const SIDEBAR_DATA: SidebarData = {
                     icon: Clipboard,
                 },
                 {
-                    title: "Validation List Lies",
-                    url: "/validation-list-lies",
+                    title: "Validation That Lies",
+                    url: "/validation-that-lies",
                     icon: ListCheck,
                 },
             ],
