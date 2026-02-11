@@ -1,5 +1,8 @@
+import { useAPIErrorHandler } from "@/hooks/use-error-handler";
+import { useValidationThatLies } from "@/services/api/false-validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const ValidationLiesSchema = z.object({
@@ -10,7 +13,7 @@ const ValidationLiesSchema = z.object({
         .string({
             error: "Please enter a valid amount",
         })
-        .refine(value => Number(value) > 0, {
+        .refine(value => Number(value) > 5, {
             error: "Amount must be greater than 0",
         }),
 });
@@ -25,7 +28,41 @@ export const useAssignmentFour = () => {
         mode: "onChange",
     });
 
+    const { APIErrorHandler } = useAPIErrorHandler();
+    const { mutateAsync: validationThatLies, isPending: isValidatingThatLies } =
+        useValidationThatLies();
+
+    const validationThatLiesErrorHandler = APIErrorHandler();
+
+    const handleValidateThatLies = form.handleSubmit(async values => {
+        if (isValidatingThatLies) {
+            toast.error("Please wait for the validation to complete");
+            return;
+        }
+
+        const { email, amount } = form.getValues();
+
+        try {
+            const response = await validationThatLies({
+                email,
+                amount: Number(amount),
+            });
+
+            if (!response) {
+                toast.error("Failed to validate that lies");
+                return;
+            }
+
+            toast.success("Validation that lies completed successfully");
+            form.reset();
+        } catch (error) {
+            validationThatLiesErrorHandler(error);
+        }
+    });
+
     return {
         form,
+        isValidatingThatLies,
+        handleValidateThatLies,
     };
 };
