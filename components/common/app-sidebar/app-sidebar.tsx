@@ -7,8 +7,8 @@ import { Command } from "lucide-react";
 
 const AppSidebar = () => {
     return (
-        <Sidebar className="pl-2 py-1 font-tertiary">
-            <SidebarHeader>
+        <Sidebar className="font-tertiary">
+            <SidebarHeader className="pl-3 pt-3">
                 <Command />
             </SidebarHeader>
             <SidebarContent>

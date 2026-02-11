@@ -1,9 +1,5 @@
-import Image from "next/image";
+import { AssignmentOneScreen } from "@/screens/assignment-one";
 
 export default function Home() {
-    return (
-        <main className="w-full min-h-screen bg-background flex flex-col ">
-            <></>
-        </main>
-    );
+    return <AssignmentOneScreen />;
 }

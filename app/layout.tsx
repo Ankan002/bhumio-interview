@@ -1,17 +1,24 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Mono } from "next/font/google";
+import { Space_Grotesk, Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider, ThemeProvider } from "@/components/providers";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
-const DMSans = DM_Sans({
+const inter = Inter({
+    variable: "--font-inter",
     subsets: ["latin"],
-    variable: "--font-sans",
+    weight: "400",
 });
 
-const DMMono = DM_Mono({
+const outfit = Outfit({
+    variable: "--font-outfit",
     subsets: ["latin"],
-    variable: "--font-mono",
-    weight: ["300", "400", "500"],
+    weight: "400",
+});
+
+const spaceGrotesk = Space_Grotesk({
+    variable: "--font-space-grotesk",
+    subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -28,10 +35,12 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body
-                className={`${DMSans.variable} ${DMMono.variable} antialiased`}
+                className={`${outfit.variable} ${inter.variable} ${spaceGrotesk.variable} antialiased`}
             >
                 <ReactQueryProvider>
-                    <ThemeProvider>{children}</ThemeProvider>
+                    <ThemeProvider>
+                        <SidebarProvider>{children}</SidebarProvider>
+                    </ThemeProvider>
                 </ReactQueryProvider>
             </body>
         </html>
