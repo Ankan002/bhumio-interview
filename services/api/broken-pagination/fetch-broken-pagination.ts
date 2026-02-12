@@ -31,13 +31,18 @@ const fetchBrokenPagination = async ({
     return data.data;
 };
 
-interface FetchBrokenPaginationArgs {
+interface UseBrokenPaginationArgs {
     page: number;
+    enabled?: boolean;
 }
 
-export const useBrokenPagination = ({ page }: FetchBrokenPaginationArgs) => {
+export const useBrokenPagination = ({
+    page,
+    enabled = true,
+}: UseBrokenPaginationArgs) => {
     return useQuery({
         queryKey: ["broken-pagination", page],
         queryFn: fetchBrokenPagination,
+        enabled,
     });
 };
