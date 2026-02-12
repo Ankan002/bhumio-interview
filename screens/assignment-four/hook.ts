@@ -13,8 +13,8 @@ const ValidationLiesSchema = z.object({
         .string({
             error: "Please enter a valid amount",
         })
-        .refine(value => Number(value) > 5, {
-            error: "Amount must be greater than 0",
+        .refine(value => Number(value) > 10, {
+            error: "Amount must be greater than 10",
         }),
 });
 
@@ -32,7 +32,11 @@ export const useAssignmentFour = () => {
     const { mutateAsync: validationThatLies, isPending: isValidatingThatLies } =
         useValidationThatLies();
 
-    const validationThatLiesErrorHandler = APIErrorHandler();
+    const validationThatLiesErrorHandler = APIErrorHandler(error => {
+        toast.error("Server Error", {
+            description: error.message,
+        });
+    });
 
     const handleValidateThatLies = form.handleSubmit(async values => {
         if (isValidatingThatLies) {

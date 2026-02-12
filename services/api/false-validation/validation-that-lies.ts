@@ -7,7 +7,7 @@ interface ValidationThatLiesArgs {
 }
 
 const validationThatLies = async (args: ValidationThatLiesArgs) => {
-    const response = await fetch("/api/validation-that-lies", {
+    const response = await fetch("/api/validation-lie", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
