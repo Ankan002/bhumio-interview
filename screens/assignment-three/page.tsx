@@ -104,7 +104,7 @@ const AssignmentThreeScreen = () => {
                             onClick={loadNextPage}
                             disabled={!isMoreData || isLoading}
                         >
-                            {isLoading ? "Loading…" : "Load next page"}
+                            {isLoading ? "Loading…" : "Load more"}
                         </Button>
                     ) : (
                         <p className="text-sm text-muted-foreground">
